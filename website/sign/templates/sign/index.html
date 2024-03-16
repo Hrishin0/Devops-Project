@@ -6,8 +6,8 @@
     <title>User Name Input</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #0F2027, #203A43, #2C5364);
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,34 +17,42 @@
         }
         .container {
             background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
         }
         h1 {
-            text-align: center;
             color: #333;
         }
         form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-top: 20px;
         }
         label {
+            display: block;
             margin-bottom: 10px;
+            color: #333;
         }
         input[type="text"] {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            margin-bottom: 20px;
         }
         button {
-            padding: 8px 16px;
-            background-color: #007bff;
+            padding: 10px 20px;
+            background-color: #203A43;
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #f5af19;
         }
     </style>
 </head>
