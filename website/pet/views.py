@@ -28,8 +28,8 @@ def delete(request, petid):
     pet.delete()
     return redirect('show')
     
-
-
+def contact(request):
+    return render(request, 'pet/contact.html')
     
     
 def addpet(request):

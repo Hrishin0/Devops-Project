@@ -22,9 +22,21 @@
     .card{
         margin-bottom:20px;
     }
+    body {
+            background: linear-gradient(to right, #FFEEEE, #DDEFBB);
+         }
+    .card-body{
+        opacity: 0.7; 
+    }
+    .card-text{
+        opacity: 1 !important;
+        color: black;
+        
+    }
 
 
 </style>
+<body>
 <div class="container">
 <div class="row">
         {% for x in boi %}
@@ -46,3 +58,4 @@
 {% endblock %}
 
 
+</body>
