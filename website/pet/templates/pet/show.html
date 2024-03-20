@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .welcome-text {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1; /* Ensure the heading appears on top of the carousel */
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease; /* Smooth transition for opacity */
+        }
+        
+        .carousel.active {
+            opacity: 1;
+        }
+
+
+        .carousel:first-child {
+            display: block; /* Display the first slide initially */
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .text-box {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 5px;
+            border-radius: 3px;
+            border: none;
+        }
+        .arrow-button {
+            position: fixed;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .arrow-button::after {
+            content: '→'; /* Arrow symbol */
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-text">Welcome</div>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="text-box">
+                <input type="text" placeholder="Enter description...">
+            </div>
+            <img src="https://www.zooplus.ie/magazine/wp-content/uploads/2021/10/Czechoslovakian-Wolfdog-1.jpeg" alt="Image a1">
+        </div>
+        <div class="carousel">
+            <div class="text-box">
+                <input type="text" placeholder="Enter description...">
+            </div>
+            <img src="https://www.marthastewart.com/thmb/gCXKR-31DYnpsLi7uUj0S4zyfqc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/happy-labrador-retriever-getty-0322-2000-eb585d9e672e47da8b1b7e9d3215a5cb.jpg" alt="Image 2">
+        </div>
+    </div>
+
+    <div class="arrow-button" onclick="scrollImages()"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel');
+    
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length; // Loop back to the first slide if at the end
+            slides[currentSlide].classList.add('active');
+        }
+    
+        function scrollImages() {
+            showSlide(currentSlide + 1);
+        }
+    
+        // Automatically scroll to the next image every 3 seconds
+        setInterval(scrollImages, 3000);
+    </script>
+
+</body>
+</html>
