@@ -37,11 +37,18 @@
         }
         input[type="text"] {
             padding: 10px;
+            padding-left: 0px;
             border-radius: 5px;
-            border: none;
+            border:none;
             width: 100%;
+            font-size: 20px;
+            text-align: center;
             margin-bottom: 20px;
         }
+        input:focus-visible{
+            outline: none;        
+        
+        } 
         button {
             padding: 10px 20px;
             background-color: #203A43;
@@ -52,13 +59,13 @@
             transition: background-color 0.3s ease-in-out;
         }
         button:hover {
-            background-color: #f5af19;
+            background-color: #2C5364;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Name Input Page</h1>
+        <h1>Welcome</h1>
         <form>
             <label for="name">Enter your name:</label>
             <input type="text" id="name" name="name">
