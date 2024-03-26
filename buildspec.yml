@@ -15,19 +15,22 @@ phases:
             - pip install --upgrade pip
             # Install dependencies needed for running the static analysis
             - pip install -r requirements.txt pylint
+            - java --version
+            - yum update
+            - yum install -y jq
+            - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+            - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
+            - export PATH=$PATH:$PWD/sonar-scanner-4.7.0.2747-linux/bin/
+            - python --version
     pre_build:
         commands:
             - python --version
             # - pylint $CODEBUILD_SRC_DIR/*.py
             - pylint $CODEBUILD_SRC_DIR/website/*.py
-            # - sudo apt-get update
-            # - sudo apt-get install -y jq
-            # - wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-            - tar xzf apache-maven-3.5.4-bin.tar.gz
-            - ln -s apache-maven-3.5.4 maven
-            - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
-            - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
-            - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
+            - sonar-scanner -Dsonar.organization=prajwalsr7 -Dsonar.projectKey=prajwalsr7_DiscussHub -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=8f463ae14dab99609c4b29b812d4fa5c2893af07
+            - sleep 5
+            - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=prajwalsr7_DiscussHub > analysis.json
+            - cat analysis.json
     build:
         commands:
             - mvn test     
