@@ -11,6 +11,7 @@ phases:
             python: 3.11
             
         commands:
+            - pip install sonar-tools
             - pip install --upgrade pip
             # Install dependencies needed for running the static analysis
             - pip install -r requirements.txt pylint
@@ -31,7 +32,7 @@ phases:
             - cat analysis.json
     build:
         commands:
-            - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
+            # - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
             - sleep 5
             - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
             - cat result.json
