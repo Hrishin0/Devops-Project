@@ -27,7 +27,7 @@ phases:
             # - pylint $CODEBUILD_SRC_DIR/*.py
             - pylint $CODEBUILD_SRC_DIR/website/*.py
             - sleep 5
-            - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=prajwalsr7_DiscussHub > analysis.json
+            - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project > analysis.json
             - cat analysis.json
     build:
         commands:
