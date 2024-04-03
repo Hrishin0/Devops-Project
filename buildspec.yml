@@ -33,7 +33,7 @@ phases:
             - cat analysis.json
     build:
         commands:
-            - sonar-scanner -Dsonar.login=${secrets-manager:LOGIN}  -Dsonar.host.url=${secrets-manager:HOST}  -Dsonar.projectKey=${secrets-manager:Project}  -Dsonar.organization=${secrets-manager:Organization} 
+            - sonar-scanner -Dsonar.login=7cf2078ee5cbdcefea96c71d3379dac3f935024e  -Dsonar.host.url=https://sonarcloud.io  -Dsonar.projectKey=Devops-Project  -Dsonar.organization=Hrishin0 
             - sleep 5
             - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=${secrets-manager:Project} > result.json
             - cat result.json
@@ -52,3 +52,5 @@ artifacts:
     # HOST: https://sonarcloud.io:HOST
     # Organization: Hrishin0:Organization
     # Project: Devops-Project:Project
+
+  #- sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -X -Dsonar.login="7cf2078ee5cbdcefea96c71d3379dac3f935024e"  -Dsonar.host.url="https://sonarcloud.io"  -Dsonar.projectKey="Devops-Project"  -Dsonar.organization="Hrishin0"
