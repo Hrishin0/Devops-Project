@@ -1,10 +1,12 @@
 version: 0.2
 
 env:
-    LOGIN: 7cf2078ee5cbdcefea96c71d3379dac3f935024e:sonartoken
-    HOST: https://sonarcloud.io:HOST
-    Organization: Hrishin0:Organization
-    Project: Devops-Project:Project
+  secrets-manager:
+    LOGIN: prod/hrishin:sonartoken
+    HOST: prod/hrishin:HOST
+    Organization: prod/hrishin:Organization
+    Project: prod/hrishin:Project
+
 phases:
     install:
         runtime-versions:
@@ -44,19 +46,14 @@ phases:
 artifacts:
     files:
         - '**/*'
-
-
-
-
-  # secrets-manager:
-  #   LOGIN: prod/hrishin:sonartoken
-  #   HOST: prod/hrishin:HOST
-  #   Organization: prod/hrishin:Organization
-  #   Project: prod/hrishin:Project
-  
           # commands:
           #   - sonar-scanner -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
           #   - sleep 5
           #   - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
           #   - cat result.json
           #   - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
+
+    # LOGIN: 7cf2078ee5cbdcefea96c71d3379dac3f935024e:sonartoken
+    # HOST: https://sonarcloud.io:HOST
+    # Organization: Hrishin0:Organization
+    # Project: Devops-Project:Project
