@@ -33,12 +33,7 @@ phases:
             - cat analysis.json
     build:
         commands:
-            - sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner \
-                  -Dsonar.login=${secrets-manager:LOGIN} \
-                  -Dsonar.host.url=${secrets-manager:HOST} \
-                  -Dsonar.projectKey=${secrets-manager:Project} \
-                  -Dsonar.organization=${secrets-manager:Organization} \
-                  -Dsonar.python.coverage.reportPaths=coverage.xml
+            - sonar-scanner -Dsonar.login=${secrets-manager:LOGIN}  -Dsonar.host.url=${secrets-manager:HOST}  -Dsonar.projectKey=${secrets-manager:Project}  -Dsonar.organization=${secrets-manager:Organization} 
             - sleep 5
             - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=${secrets-manager:Project} > result.json
             - cat result.json
