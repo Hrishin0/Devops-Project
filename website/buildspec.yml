@@ -1,19 +1,62 @@
+# version: 0.2
+
+# phases:
+#   install:
+#     runtime-versions:
+#       python: 3.11
+#     commands:
+#       - pip install --upgrade pip
+#       # Install dependencies needed for running the static analysis
+#       - pip install -r requirements.txt pylint
+  
+#   pre_build:
+#     commands:
+#       - python --version
+#       - pylint $CODEBUILD_SRC_DIR/*.py
+#       - pylint $CODEBUILD_SRC_DIR/website/*.py
+# artifacts:
+#   files:
+#     - '**/*'
 version: 0.2
 
+env:
+  secrets-manager:
+    LOGIN: prod/hrishin:sonartoken
+    HOST: prod/hrishin:HOST
+    Organization: prod/hrishin:Organization
+    Project: prod/hrishin:Project
 phases:
-  install:
-    runtime-versions:
-      python: 3.11
-    commands:
-      - pip install --upgrade pip
-      # Install dependencies needed for running the static analysis
-      - pip install -r requirements.txt pylint
-  
-  pre_build:
-    commands:
-      - python --version
-      - pylint $CODEBUILD_SRC_DIR/*.py
-      - pylint $CODEBUILD_SRC_DIR/website/*.py
+    install:
+        runtime-versions:
+            python: 3.11
+            
+        commands:
+            - pip install --upgrade pip
+            # Install dependencies needed for running the static analysis
+            - pip install -r requirements.txt pylint
+            - java --version
+            - yum update -y
+            - yum install -y jq
+            - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+            - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
+            - export PATH=$PATH:$PWD/sonar-scanner-4.7.0.2747-linux/bin/
+            - python --version
+    pre_build:
+        commands:
+            - python --version
+            # - pylint $CODEBUILD_SRC_DIR/*.py
+            - pylint $CODEBUILD_SRC_DIR/website/*.py
+            - sleep 5
+            - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=prajwalsr7_DiscussHub > analysis.json
+            - cat analysis.json
+    build:
+        commands:
+            - mvn test     
+            - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
+            - sleep 5
+            - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
+            - cat result.json
+            - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
 artifacts:
-  files:
-    - '**/*'
+    files:
+        - '**/*'
