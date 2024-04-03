@@ -1,3 +1,4 @@
+"""Linking urls"""
 from django.urls import path
 from . import views
 
@@ -9,4 +10,4 @@ urlpatterns = [
     path('delete/<petid>',views.delete, name='delete'),
     path('contact/', views.contact, name='contact'),
 ]
-# to access dog you would go to pet/dog 
+# to access dog you would go to pet/

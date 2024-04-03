@@ -1,9 +1,11 @@
+"""USERFORMS"""
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core import validators
 
 class UserSignUpForm(UserCreationForm):
+    """signupform"""
     email = forms.EmailField(validators=[validators.validate_email])
     min_length = 2
     max_length = 30
@@ -11,7 +13,7 @@ class UserSignUpForm(UserCreationForm):
     message_ht_max = f"Should have at most{max_length} characters."
     name_regex='\A[a-zA-Z]+\Z'
     name_message='The name accepts only letters!'
-    
+
     first_name = forms.CharField(validators=[
             validators.MinLengthValidator(min_length, message_lt_min),
             validators.MaxLengthValidator(max_length, message_ht_max),
@@ -24,6 +26,7 @@ class UserSignUpForm(UserCreationForm):
         ])
 
 class Meta:
+    """META"""
     model = User
     fields = ['username', 'first_name',
         'last_name','email', 'password1', 'password2']

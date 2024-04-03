@@ -1,3 +1,3 @@
-from django.contrib import admin
+"""Blank file"""
 
 # Register your models here.

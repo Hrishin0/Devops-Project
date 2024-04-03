@@ -1,4 +1,5 @@
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+"""Creating the Pet related views"""
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Pet
 from .forms import PetForm
@@ -6,7 +7,7 @@ from .forms import PetForm
 
 def index(request):
     return render(request, 'pet/index.html')
-    
+
 def show(request):
     pets = Pet.objects.all()
     return render(request, 'pet/pet.html', {"boi": pets})
@@ -14,7 +15,7 @@ def show(request):
 def details(request, petid):
     pet = Pet.objects.get(pk=petid)
     return render(request, 'pet/details.html',{'pet': pet})
-    
+
 def update(request, petid):
     pet = Pet.objects.get(pk=petid)
     form = PetForm(request.POST or None, instance=pet)
@@ -27,12 +28,14 @@ def delete(request, petid):
     pet = Pet.objects.get(pk=petid)
     pet.delete()
     return redirect('show')
-    
+
 def contact(request):
+    """renders"""
     return render(request, 'pet/contact.html')
-    
-    
+
+
 def addpet(request):
+    """Function to add pet"""
     submitted = False
     if request.method == "POST":
         form = PetForm(request.POST, request.FILES)
@@ -44,4 +47,3 @@ def addpet(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'pet/addpet.html', {'form': form, 'submitted': submitted})
-
