@@ -14,10 +14,10 @@ phases:
   pre_build:
     commands:
       - yum update -y
-      - yum install -y jq
+      - yum install -y jq tar
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
-      - tar xvfz sonar-scanner-cli-4.7.0.2747-linux.zip /sonar_scanner
-      - export PATH=$PATH:/sonar_scanner/sonar-scanner-3.3.0.1492-linux/bin/
+      - tar xvfz sonar-scanner-cli-4.7.0.2747-linux.zip
+      - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
   build:
     commands:
       - sonar-scanner -h
