@@ -22,10 +22,10 @@ phases:
       - docker --version
   build:
       - sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -X \
-        -Dsonar.login=$LOGIN \
-        -Dsonar.host.url=$HOST \
-        -Dsonar.projectKey=$Project \
-        -Dsonar.python.coverage.reportPaths=coverage.xml
+            - Dsonar.login=$LOGIN \
+            - Dsonar.host.url=$HOST \
+            - Dsonar.projectKey=$Project \
+            - Dsonar.python.coverage.reportPaths=coverage.xml
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=${Project} > result.json
       - cat result.json
