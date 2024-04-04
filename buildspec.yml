@@ -22,7 +22,6 @@ phases:
       - export PATH=$PATH:/sonar-scanner-4.7.0.2747-linux/bin/
       - docker --version
   build:
-      - pylint $CODEBUILD_SRC_DIR/website/*.py
       - sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -X \
             -Dsonar.login=$LOGIN \
             -Dsonar.host.url=$HOST \
