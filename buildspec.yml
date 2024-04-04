@@ -19,7 +19,6 @@ phases:
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
       - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
       - export PATH=$PATH:/sonar-scanner-4.7.0.2747-linux/bin/
-      - docker --version
    build:
      - sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -X \
         -Dsonar.login=$LOGIN \
