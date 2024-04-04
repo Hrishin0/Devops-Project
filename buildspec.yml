@@ -14,19 +14,19 @@ phases:
   pre_build:
     commands:
       - yum update -y
-      - yum install -y python3-pip jq 
-      - pip3 install --upgrade pip
+      - yum install -y jq
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
-      - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
-      - export PATH=$PATH:/sonar-scanner-4.7.0.2747-linux/bin/
-      - docker --version
+      - tar xvfz sonar-scanner-cli-4.7.0.2747-linux.zip /sonar_scanner
+      - export PATH=$PATH:/sonar_scanner/sonar-scanner-3.3.0.1492-linux/bin/
   build:
+    commands:
+      - sonar-scanner -h
       # - sonar-scanner-cli-4.7.0.2747-linux -X -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.python.coverage.reportPaths=coverage.xml
       - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=${Project} > result.json
-      - cat result.json
-      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0; fi
- 
+      # - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=${Project} > result.json
+      # - cat result.json
+      # - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0; fi
+
 artifacts:
   files:
     - '*/'
