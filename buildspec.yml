@@ -5,6 +5,7 @@ env:
     HOST: "https://sonarcloud.io"
     Organization: "Hrishin0"
     Project: "Devops-Project"
+
 phases:
   install:
     runtime-versions:
