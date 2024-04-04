@@ -11,8 +11,8 @@ phases:
   install:
     runtime-versions:
       python: 3.11
-      
-   pre_build:
+
+  pre_build:
     commands:
       - yum update -y
       - yum install -y python3-pip jq 
