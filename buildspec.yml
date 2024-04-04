@@ -12,7 +12,7 @@ phases:
     runtime-versions:
       python: 3.11
  
-  pre_build:
+   pre_build:
     commands:
       - yum update -y
       - yum install -y python3-pip jq 
@@ -21,8 +21,7 @@ phases:
       - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
       - export PATH=$PATH:/sonar-scanner-4.7.0.2747-linux/bin/
       - docker --version
-    build:
-      # - pylint $CODEBUILD_SRC_DIR/*.py
+  build:
       - pylint $CODEBUILD_SRC_DIR/website/*.py
       - sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -X \
             -Dsonar.login=$LOGIN \
