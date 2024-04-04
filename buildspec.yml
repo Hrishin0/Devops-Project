@@ -1,7 +1,6 @@
 version: 0.2
 
 env:
-  secrets-manager:
     LOGIN: "7cf2078ee5cbdcefea96c71d3379dac3f935024e"
     HOST: "https://sonarcloud.io"
     Organization: "Hrishin0"
@@ -21,7 +20,7 @@ phases:
       - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
       - export PATH=$PATH:/sonar-scanner-4.7.0.2747-linux/bin/
       - docker --version
-    build:
+  build:
       - sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner -X \
             -Dsonar.login=$LOGIN \
             -Dsonar.host.url=$HOST \
