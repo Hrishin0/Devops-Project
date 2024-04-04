@@ -21,6 +21,7 @@ phases:
       - export PATH=$PATH:/sonar-scanner-4.7.0.2747-linux/bin/
       - docker --version
   build:
+    commands:
       - sonar-scanner -X -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.python.coverage.reportPaths=coverage.xml
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=${Project} > result.json
