@@ -25,7 +25,8 @@ SECRET_KEY = 'tmrb%w^zp29c$3yfr6eek8sp#2o@gd!)7p!0l(d^a&8daj2o+q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hrishindos-ca-env.eba-ykrvgcpm.eu-west-2.elasticbeanstalk.com','7d35e192b4b347e184c17476e1f4887f.vfs.cloud9.eu-west-1.amazonaws.com', 'hrishincaapp-env.eba-dz3iuukz.eu-west-1.elasticbeanstalk.com', '7d35e192b4b347e184c17476e1f4887f.vfs.cloud9.eu-west-1.amazonaws.com']
+# ALLOWED_HOSTS = ['hrishindos-ca-env.eba-ykrvgcpm.eu-west-2.elasticbeanstalk.com','7d35e192b4b347e184c17476e1f4887f.vfs.cloud9.eu-west-1.amazonaws.com', 'hrishincaapp-env.eba-dz3iuukz.eu-west-1.elasticbeanstalk.com', '7d35e192b4b347e184c17476e1f4887f.vfs.cloud9.eu-west-1.amazonaws.com']
+ALLOWED_HOSTS = ['hrishinsapp-env.eba-uyh5ncaq.eu-west-1.elasticbeanstalk.com']
 
 
 # Application definition
